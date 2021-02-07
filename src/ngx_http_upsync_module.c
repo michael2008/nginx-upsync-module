@@ -1684,7 +1684,7 @@ ngx_http_upsync_consul_lookup_parse_json(void *data)
         ngx_memcpy(upstream_conf->sockaddr + addr_len + 1, port_buf, port_len);
 
         /* default value, server attribute */
-        upstream_conf->weight = 1;
+        upstream_conf->weight = 50;
         upstream_conf->max_fails = 10;
         upstream_conf->fail_timeout = 2;
 
@@ -1706,7 +1706,7 @@ ngx_http_upsync_consul_lookup_parse_json(void *data)
             if (weight_int == NGX_ERROR || weight_int < 0) {
                 ngx_log_error(NGX_LOG_ERR, ngx_cycle->log, 0,
                              "upsync_parse_json: \"weight\" value is "
-                             "invalid, setting default value 1");
+                             "invalid, setting default value 50");
             } else {
                 upstream_conf->weight = weight_int;
             }
